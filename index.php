@@ -1,4 +1,19 @@
-<?php include './conexao.php' ?>
+<?php 
+    include './conexao.php';
+    $ok = 0;
+    $respos = [];
+    if( isset ($_POST ) && !empty($_POST) ){
+        for($j=0;$j<15;$j++){
+            $respos[$j]= $_POST['resposta'.$j];
+            if($respos[$j]==$result[$j])
+            {
+                $ok+=1;
+            }
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,31 +31,51 @@
 </nav>
 <body>
     <div class="container-fluid">
-        <?php
-        $query = "select * from questoes order by rand() limit 15";
-        $resultado = mysqli_query($conexao, $query);
-        $i = 0;
-        $result = [];
-        while($linha = mysqli_fetch_array($resultado)){
-            ?>
-                <div style="width:100%; border:1px solid;">
-                    <h1> <?php echo $linha["pergunta"]; ?> </h1>
-                    <h3> <?php echo $linha["a"]; ?> </h3>
-                    <h3> <?php echo $linha["b"]; ?> </h3>
-                    <h3> <?php echo $linha["c"]; ?> </h3>
-                    <h3> <?php echo $linha["d"]; ?> </h3>
-                    <h3> <?php echo $linha["e"]; ?> </h3>
-                    <?php $result[$i] = $linha['correta'] ?>
-                </div>
+        <?php 
+        if( isset ($_POST ) && !empty($_POST) ){
+            echo ' Voce tem'.$ok.'respostas certas';
+        }          
+
+        ?>
+        <form action="./index.php" method="post">
             <?php
-            $i = $i+1;
-        }
-    ?>
-        <pre>
-            <?php
-            print_r($result); 
-            ?>
-        </pre>
+            $query = "select * from questoes order by rand() limit 15";
+            $resultado = mysqli_query($conexao, $query);
+            $i = 0;
+            $result = [];
+            while($linha = mysqli_fetch_array($resultado)){
+                ?>
+
+                    <div class="card col-4 offset-4">
+                        <div class="card-header">
+                            <h1> <?php echo $linha["pergunta"]; ?> </h1>
+                        </div>
+                        <ul class="list-group list-group-flush ">
+                            <li class="list-group-item"><input id="<?php echo $i ?>" type="radio" name="resposta<?php echo $i ?>" value="A" /> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="B" /> &nbsp; B)- <?php echo $linha["b"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="C" />&nbsp; C)- <?php echo $linha["c"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="D" />&nbsp; D)- <?php echo $linha["d"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="E" />&nbsp; E)- <?php echo $linha["e"]; ?></li>
+                            <?php $result[$i] = $linha['correta'] ?>
+                            
+                        </ul>
+                    </div>
+
+                    
+                <?php
+                $i = $i+1;
+            }
+        ?>
+        <div class="col-4 offset-4">
+            <button type="submit">Salvar Pergunta</button>
+        </div>
+        
+            <pre>
+                <?php
+                print_r($result); 
+                ?>
+            </pre>
+        </form>
     </div>   
 </body>
 </html>
