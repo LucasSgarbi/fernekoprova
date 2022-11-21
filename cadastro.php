@@ -65,14 +65,30 @@ if( isset ($_POST ) && !empty($_POST) ){
 
     while($linha = mysqli_fetch_array($resultado)){
         ?>
-            <div style="width:100%; border:1px solid;">
+            <div >
                 <h1> <?php echo $linha["pergunta"]; ?> </h1>
                 <h3> <?php echo $linha["a"]; ?> </h3>
                 <h3> <?php echo $linha["b"]; ?> </h3>
                 <h3> <?php echo $linha["c"]; ?> </h3>
                 <h3> <?php echo $linha["d"]; ?> </h3>
-                <h3> <?php echo $linha["e"]; ?> </h3>
+                <?php echo
+                '<div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input" type="radio" aria-label="Radio button for following text input">
+                    </div>
+                     '.$linha["e"].'; 
+                </div>'
+                ?>
+                <?php echo 
+                '<div class="input-group">
+                    <div class="input-group-text">
+                    <input name="'.$i.'"  class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input checked">
+                    </div>
+                </div>';
+                ?>
+
             </div>
         <?php
     }
 ?>
+
