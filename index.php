@@ -41,7 +41,7 @@
 
                     <div class="card col-md-4 offset-md-4 col-sm-12">
                         <div class="card-header">
-                            <h1> <?php echo $linha["pergunta"]; ?> </h1>
+                            <h2> <?php echo $i + 1 . ')->' .$linha["pergunta"]; ?> </h2>
                         </div>
                         <ul class="list-group list-group-flush ">
                             <li class="list-group-item"><input id="<?php echo $i ?>" type="radio" name="resposta<?php echo $i ?>" value="A" /> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
@@ -68,7 +68,7 @@
         ?>
         <input type="hidden" name="result" value="<?php print_r($result); ?>" >
         <div class="col-md-4 offset-md-4 col-sm-12">
-            <button type="submit">Salvar Pergunta</button>
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Salvar Pergunta</button>
         </div>
 
         </form>
