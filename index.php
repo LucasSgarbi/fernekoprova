@@ -1,16 +1,8 @@
 <?php 
     include './conexao.php';
     $ok = 0;
-    $respos = [];
-    if( isset ($_POST ) && !empty($_POST) ){
-        for($j=0;$j<15;$j++){
-            $respos[$j]= $_POST['resposta'.$j];
-            if($respos[$j]==$result[$j])
-            {
-                $ok+=1;
-            }
-        }
-    }
+    session_start();
+    
 ?>
 
 
@@ -32,21 +24,22 @@
 <body>
     <div class="container-fluid">
         <?php 
-        if( isset ($_POST ) && !empty($_POST) ){
-            echo ' Voce tem'.$ok.'respostas certas';
-        }          
+        // if( isset ($_POST ) && !empty($_POST) ){
+        //     echo ' Voce tem'.$ok.'respostas certas';
+        // }          
 
         ?>
-        <form action="./index.php" method="post">
+        <form action="./resultado.php" method="post">
             <?php
             $query = "select * from questoes order by rand() limit 15";
             $resultado = mysqli_query($conexao, $query);
             $i = 0;
             $result = [];
+            $ids = [];
             while($linha = mysqli_fetch_array($resultado)){
                 ?>
 
-                    <div class="card col-4 offset-4">
+                    <div class="card col-md-4 offset-md-4 col-sm-12">
                         <div class="card-header">
                             <h1> <?php echo $linha["pergunta"]; ?> </h1>
                         </div>
@@ -57,24 +50,27 @@
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="D" />&nbsp; D)- <?php echo $linha["d"]; ?></li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="E" />&nbsp; E)- <?php echo $linha["e"]; ?></li>
                             <?php $result[$i] = $linha['correta'] ?>
+                            <?php $ids[$i] = $linha['id'] ?>
+
                             
                         </ul>
                     </div>
 
                     
                 <?php
+
                 $i = $i+1;
             }
         ?>
-        <div class="col-4 offset-4">
+        <?php 
+        $_SESSION['ids']=$ids;
+        $_SESSION['resultados']= $result;
+        ?>
+        <input type="hidden" name="result" value="<?php print_r($result); ?>" >
+        <div class="col-md-4 offset-md-4 col-sm-12">
             <button type="submit">Salvar Pergunta</button>
         </div>
-        
-            <pre>
-                <?php
-                print_r($result); 
-                ?>
-            </pre>
+
         </form>
     </div>   
 </body>
