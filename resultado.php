@@ -38,7 +38,7 @@ $pontuacao = count($ids);
         for ($i; $i < count($ids); $i++) {
             $query = "select * from questoes WHERE ID =" . $ids[$i];
             $resultado = mysqli_query($conexao, $query);
-            $linha = mysqli_fetch_array($resultado)
+            $linha = mysqli_fetch_array($resultado);
         ?>
             <div class="card col-md-6 offset-md-3 col-sm-12">
                 <div class="card-header">

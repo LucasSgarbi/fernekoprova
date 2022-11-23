@@ -44,11 +44,11 @@
                             <h2> <?php echo $i + 1 . ')->' .$linha["pergunta"]; ?> </h2>
                         </div>
                         <ul class="list-group list-group-flush ">
-                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="A" /> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
-                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="B" /> &nbsp; B)- <?php echo $linha["b"]; ?></li>
-                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="C" />&nbsp; C)- <?php echo $linha["c"]; ?></li>
-                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="D" />&nbsp; D)- <?php echo $linha["d"]; ?></li>
-                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="E" />&nbsp; E)- <?php echo $linha["e"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="A" /> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="B" /> &nbsp; B)- <?php echo $linha["b"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="C" /> &nbsp; C)- <?php echo $linha["c"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="D" /> &nbsp; D)- <?php echo $linha["d"]; ?></li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="E" /> &nbsp; E)- <?php echo $linha["e"]; ?></li>
                             <?php $result[$i] = $linha['correta'] ?>
                             <?php $ids[$i] = $linha['id'] ?>    
                         </ul>
@@ -64,9 +64,9 @@
         $_SESSION['ids']=$ids;
         $_SESSION['resultados']= $result;
         ?>
-        <!-- <input type="hidden" name="result" value="<?php print_r($result); ?>" > -->
+        
         <div class="col-md-4 offset-md-4 col-sm-12">
-            <button class="btn btn-dark btn-lg btn-block" type="submit">Salvar Pergunta</button>
+            <button class="btn btn-dark btn-lg btn-block" type="submit">Salvar Resposta</button>
         </div>
 
         </form>
