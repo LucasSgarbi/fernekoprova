@@ -18,7 +18,7 @@ $pontuacao = count($ids);
     <title>Resultado</title>
 </head>
 
-<body>
+<body style="background-color: #c0c0c0;">
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.php">Estudos</a>
@@ -28,11 +28,11 @@ $pontuacao = count($ids);
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3"></div>
-            <div class="col-md-3 col-sm-12 bg-success"> Resposta Corretas estão em verde</div>
-            <div class="col-md-3 col-sm-12 bg-danger"> Resposta Eradas estão em vermelho</div>
+            <div class="col-md-3 col-sm-12 bg-success fw-bold"> <h4>Resposta Corretas estão em verde</h4></div>
+            <div class="col-md-3 col-sm-12 bg-danger fw-bold"> <h4>Resposta Eradas estão em vermelho</h4></div>
             <div class="col-md-3"></div>
         </div>
-
+        <br>
         <?php
         $i = 0;
         for ($i; $i < count($ids); $i++) {
@@ -40,7 +40,7 @@ $pontuacao = count($ids);
             $resultado = mysqli_query($conexao, $query);
             $linha = mysqli_fetch_array($resultado)
         ?>
-            <div class="card col-md-4 offset-md-4 col-sm-12">
+            <div class="card col-md-6 offset-md-3 col-sm-12">
                 <div class="card-header">
                     <h2> <?php echo $i + 1 . ')->' . $linha["pergunta"]; ?> </h2>
                 </div>
@@ -77,6 +77,7 @@ $pontuacao = count($ids);
                                                 } ?>">&nbsp; E)- <?php echo $linha["e"]; ?></li>
                 </ul>
             </div>
+            <br>
         <?php
         }
 

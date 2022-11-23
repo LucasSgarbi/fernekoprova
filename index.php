@@ -21,7 +21,7 @@
     <a class="navbar-brand" href="./index.php" >Home</a>
   </div>
 </nav>
-<body>
+<body style="background-color: #c0c0c0;">
     <div class="container-fluid">
         <?php 
         // if( isset ($_POST ) && !empty($_POST) ){
@@ -44,18 +44,16 @@
                             <h2> <?php echo $i + 1 . ')->' .$linha["pergunta"]; ?> </h2>
                         </div>
                         <ul class="list-group list-group-flush ">
-                            <li class="list-group-item"><input id="<?php echo $i ?>" type="radio" name="resposta<?php echo $i ?>" value="A" /> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
+                            <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="A" /> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="B" /> &nbsp; B)- <?php echo $linha["b"]; ?></li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="C" />&nbsp; C)- <?php echo $linha["c"]; ?></li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="D" />&nbsp; D)- <?php echo $linha["d"]; ?></li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" name="resposta<?php echo $i ?>" value="E" />&nbsp; E)- <?php echo $linha["e"]; ?></li>
                             <?php $result[$i] = $linha['correta'] ?>
-                            <?php $ids[$i] = $linha['id'] ?>
-
-                            
+                            <?php $ids[$i] = $linha['id'] ?>    
                         </ul>
                     </div>
-
+                <br>
                     
                 <?php
 
@@ -66,7 +64,7 @@
         $_SESSION['ids']=$ids;
         $_SESSION['resultados']= $result;
         ?>
-        <input type="hidden" name="result" value="<?php print_r($result); ?>" >
+        <!-- <input type="hidden" name="result" value="<?php print_r($result); ?>" > -->
         <div class="col-md-4 offset-md-4 col-sm-12">
             <button class="btn btn-dark btn-lg btn-block" type="submit">Salvar Pergunta</button>
         </div>
