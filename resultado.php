@@ -3,8 +3,6 @@ session_start();
 include './conexao.php';
 $ids = [];
 $ids = $_SESSION['ids'];
-$result = [];
-$result = $_SESSION['resultados'];
 $pontuacao = count($ids);
 ?>
 <!DOCTYPE html>
@@ -45,31 +43,31 @@ $pontuacao = count($ids);
                     <h2> <?php echo $i + 1 . ')->' . $linha["pergunta"]; ?> </h2>
                 </div>
                 <ul class="list-group list-group-flush ">
-                    <li class="list-group-item <?php if ($result[$i] == 'A' || $result[$i] == 'a') {
+                    <li class="list-group-item <?php if ($linha["correta"] == 'A' || $linha["correta"] == 'a') {
                                                     echo 'bg-success';
                                                 } elseif ($_POST['resposta' . $i] == 'A' || $_POST['resposta' . $i] == 'a') {
                                                     echo 'bg-danger';
                                                     $pontuacao = $pontuacao - 1;
                                                 } ?>"> &nbsp; A)- <?php echo $linha["a"]; ?> </li>
-                    <li class="list-group-item <?php if ($result[$i] == 'B' || $result[$i] == 'b') {
+                    <li class="list-group-item <?php if ($linha["correta"] == 'B' || $linha["correta"] == 'b') {
                                                     echo 'bg-success';
                                                 } elseif ($_POST['resposta' . $i] == 'B' || $_POST['resposta' . $i] == 'b') {
                                                     echo 'bg-danger';
                                                     $pontuacao = $pontuacao - 1;
                                                 } ?>"> &nbsp; B)- <?php echo $linha["b"]; ?></li>
-                    <li class="list-group-item <?php if ($result[$i] == 'C' || $result[$i] == 'c') {
+                    <li class="list-group-item <?php if ($linha["correta"] == 'C' || $linha["correta"] == 'c') {
                                                     echo 'bg-success';
                                                 } elseif ($_POST['resposta' . $i] == 'C' || $_POST['resposta' . $i] == 'c') {
                                                     echo 'bg-danger';
                                                     $pontuacao = $pontuacao - 1;
                                                 } ?>">&nbsp; C)- <?php echo $linha["c"]; ?></li>
-                    <li class="list-group-item <?php if ($result[$i] == 'D' || $result[$i] == 'd') {
+                    <li class="list-group-item <?php if ($linha["correta"] == 'D' || $linha["correta"] == 'd') {
                                                     echo 'bg-success';
                                                 } elseif ($_POST['resposta' . $i] == 'D' || $_POST['resposta' . $i] == 'd') {
                                                     echo 'bg-danger';
                                                     $pontuacao = $pontuacao - 1;
                                                 } ?>">&nbsp; D)- <?php echo $linha["d"]; ?></li>
-                    <li class="list-group-item <?php if ($result[$i] == 'E' || $result[$i] == 'e') {
+                    <li class="list-group-item <?php if ($linha["correta"] == 'E' || $linha["correta"] == 'e') {
                                                     echo 'bg-success';
                                                 } elseif ($_POST['resposta' . $i] == 'E' || $_POST['resposta' . $i] == 'e') {
                                                     echo 'bg-danger';
@@ -86,7 +84,6 @@ $pontuacao = count($ids);
         echo ' <div class="row">
                     <div class="col-sm-12 col-md-6 offset-md-4"> <h1 class="text-primary">Sua pontuação é de ' .$pontuacao. '</h1></div>
                 </div>';
-        // echo '<script> alert("Sua pontuação é de ' . $pontuacao . '")</script>';
         ?>
 
     </div>

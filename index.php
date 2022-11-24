@@ -23,11 +23,7 @@
 </nav>
 <body style="background-color: #c0c0c0;">
     <div class="container-fluid">
-        <?php 
-        // if( isset ($_POST ) && !empty($_POST) ){
-        //     echo ' Voce tem'.$ok.'respostas certas';
-        // }          
-
+        <?php         
         ?>
         <form action="./resultado.php" method="post">
             <?php
@@ -39,7 +35,7 @@
             while($linha = mysqli_fetch_array($resultado)){
                 ?>
 
-                    <div class="card col-md-4 offset-md-4 col-sm-12">
+                    <div class="card col-md-6 offset-md-3 col-sm-12">
                         <div class="card-header">
                             <h2> <?php echo $i + 1 . ')->' .$linha["pergunta"]; ?> </h2>
                         </div>
@@ -49,7 +45,6 @@
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="C" /> &nbsp; C)- <?php echo $linha["c"]; ?></li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="D" /> &nbsp; D)- <?php echo $linha["d"]; ?></li>
                             <li class="list-group-item"><input id="<?php echo $i ?>"type="radio" required name="resposta<?php echo $i ?>" value="E" /> &nbsp; E)- <?php echo $linha["e"]; ?></li>
-                            <?php $result[$i] = $linha['correta'] ?>
                             <?php $ids[$i] = $linha['id'] ?>    
                         </ul>
                     </div>
@@ -62,7 +57,7 @@
         ?>
         <?php 
         $_SESSION['ids']=$ids;
-        $_SESSION['resultados']= $result;
+        // Foi usado seção para passar o Ids por conta que tão dando Shutdown no banco e as vezes não tem 15 questões
         ?>
         
         <div class="col-md-4 offset-md-4 col-sm-12">
